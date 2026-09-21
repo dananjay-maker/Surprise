@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Jinx ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #050505;
+            background-image: radial-gradient(circle at center, #1a1a24 0%, #000000 100%);
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Cinematic Starry Background Effect */
+        .stars {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            opacity: 0.4;
+            z-index: 0;
+            animation: moveStars 60s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        #countdown-container {
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 2s;
+        }
+
+        .time-box {
+            font-size: 4rem;
+            font-weight: 300;
+            color: #ff4d4d;
+            margin-top: 10px;
+            letter-spacing: 4px;
+            text-shadow: 0px 0px 20px rgba(255, 77, 77, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* Cinematic Reveal Styling */
+        #message-container {
+            display: none;
+            position: relative;
+            z-index: 10;
+            padding: 40px;
+            max-width: 700px;
+        }
+
+        .cinematic-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: scale(0.95);
+            animation: cinematicFadeIn 4s ease-out forwards;
+        }
+
+        .cinematic-text h1 {
+            font-size: 2.5rem;
+            color: #ff4d4d;
+            letter-spacing: 5px;
+            text-shadow: 0px 0px 15px rgba(255, 77, 77, 0.6);
+            margin-bottom: 30px;
+        }
+
+        /* Delays for each paragraph to create a dramatic sequence */
+        .p1 { animation-delay: 1s; }
+        .p2 { animation-delay: 4s; }
+        .p3 { animation-delay: 7s; font-weight: bold; font-size: 1.8rem; color: #ff4d4d; }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes cinematicFadeIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <div id="countdown-container">
+        <div class="subtitle">Awaiting 2:00 AM...</div>
+        <div id="timer" class="time-box">Loading...</div>
+    </div>
+
+    <div id="message-container">
+        <div class="cinematic-text p1">
+            <h1>HAPPY 2 YEARS, JINX</h1>
+            <p>I still think about that 2 AM confession like it was yesterday.</p>
+        </div>
+        <div class="cinematic-text p2">
+            <p>Being long-distance isn't always easy, but having you as my girl makes every single mile totally worth it. You're the best part of every day.</p>
+        </div>
+        <div class="cinematic-text p3">
+            <p>I love you so much, Homeshi.</p>
+        </div>
+    </div>
+
+    <script>
+        // Set the exact time for the reveal
+        const revealDate = new Date("September 22, 2026 02:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = revealDate - now;
+
+            if (distance > 0) {
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const h = hours < 10 ? "0" + hours : hours;
+                const m = minutes < 10 ? "0" + minutes : minutes;
+                const s = seconds < 10 ? "0" + seconds : seconds;
+
+                document.getElementById("timer").innerHTML = h + ":" + m + ":" + s;
+            } else {
+                // Time is up! Trigger the cinematic reveal
+                clearInterval(x);
+                
+                // Fade out countdown smoothly
+                document.getElementById("countdown-container").style.transition = "opacity 1s ease";
+                document.getElementById("countdown-container").style.opacity = "0";
+                
+                setTimeout(() => {
+                    document.getElementById("countdown-container").style.display = "none";
+                    document.getElementById("message-container").style.display = "block";
+                }, 1000);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
